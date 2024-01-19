@@ -1,4 +1,3 @@
-const fs = require('fs');
 const scanModules = require('./util/scanModules');
 
 const scripts = {

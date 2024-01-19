@@ -7,7 +7,6 @@
             "light.2"
         ]
     },
-
     "facetracker": {
         "device": {
             "name": "USB Live camera",

@@ -1,4 +1,4 @@
-const { token, location, devices } = require(`../config.json`).hass;
+const { token, location, devices } = require(`../core/config`).hass;
 
 module.exports = () => new Promise(async res => {
     console.log(`Turning on ${devices.length} device(s)...`);

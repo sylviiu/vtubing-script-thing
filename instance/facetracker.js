@@ -2,7 +2,7 @@ const EventEmitter = require('events');
 const path = require('path');
 const child_process = require('child_process');
 
-const config = require(`../config.json`).facetracker;
+const config = require(`../core/config`).facetracker;
 
 const dcapRegex = /([\S]+: [\S]+)/g;
 

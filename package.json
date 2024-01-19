@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build": "nexe index.js --clean --python $(which python3) -b -o build/vtube"
+  },
+  "devDependencies": {
+    "nexe": "^4.0.0-rc.4"
+  }
+}
