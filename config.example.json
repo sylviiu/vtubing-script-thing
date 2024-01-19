@@ -1,0 +1,17 @@
+{
+    "hass": {
+        "token": "token",
+        "location": "http://192.168.68.50:8123"
+    },
+
+    "facetracker": {
+        "device": {
+            "name": "USB Live camera",
+            "dCap": 1,
+            "frameRate": 60
+        },
+        "model": 1,
+        "mirrored": true,
+        "location": "127.0.0.1:11573"
+    }
+}
