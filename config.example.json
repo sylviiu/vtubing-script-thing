@@ -1,7 +1,11 @@
 {
     "hass": {
         "token": "token",
-        "location": "http://192.168.68.50:8123"
+        "location": "http://192.168.68.50:8123",
+        "devices": [
+            "light.1",
+            "light.2"
+        ]
     },
 
     "facetracker": {

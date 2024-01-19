@@ -4,7 +4,7 @@ const scanModules = require('./util/scanModules');
 const scripts = {
     pre: scanModules('pre'),
     instance: scanModules('instance'),
-    //post: scanModules('post')
+    post: scanModules('post')
 }
 
 console.log(scripts);
@@ -18,6 +18,10 @@ console.log(scripts);
     };
 
     const instances = {};
+    const exit = () => require(`./util/exit`)(instances, scripts);
+
+    process.on('SIGINT', exit);
+    process.on('SIGTERM', exit);
 
     console.log('Creating instances');
 
@@ -34,18 +38,7 @@ console.log(scripts);
         if(!instances[script.name].resurrect) {
             console.log(`| | Instance ${script.name} is not resurrectable; killing process when this dies...`);
 
-            instances[script.name].once('close', async () => {
-                console.log(`| Instance ${script.name} died; killing processes...`);
-
-                for(let script of scripts.instance) {
-                    console.log(`| | Killing ${script.name}...`);
-                    if(typeof instances[script.name].stop == `function`) await instances[script.name].stop();
-                };
-
-                console.log(`| Killing process...`);
-
-                process.exit();
-            });
+            instances[script.name].once('close', exit);
         }
 
         await instances[script.name].start();

@@ -45,8 +45,13 @@ module.exports = class FaceTracker extends EventEmitter {
     resurrect = true;
 
     stop() {
-        this.resurrect = false;
-        if(this.process && !this.process.killed) this.process.kill();
+        if(this.process && !this.process.killed) {
+            return new Promise(async res => {
+                this.resurrect = false;
+                this.process.on('close', res);
+                this.process.kill();
+            })
+        } else return false;
     }
 
     start() {

@@ -7,7 +7,7 @@ module.exports = () => new Promise(async res => {
         console.log(`Turning on ${entity}...`);
 
         try {
-            const req = await fetch(`${location}/api/services/light/turn_on`, {
+            const req = await fetch(`${location}/api/services/light/turn_off`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
