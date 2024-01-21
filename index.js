@@ -10,6 +10,9 @@ let exit = require(`./util/exit`)(scripts);
 
 process.on('SIGINT', exit);
 process.on('SIGTERM', exit);
+process.on('SIGHUP', exit);
+process.on('close', exit);
+process.on('exit', exit);
 
 console.log(scripts);
 
