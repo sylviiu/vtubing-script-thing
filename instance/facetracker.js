@@ -65,6 +65,8 @@ module.exports = class FaceTracker extends EventEmitter {
     
             this.process = child_process.spawn('facetracker.exe', [
                 '-s', '1', // silent
+
+                ...(config.threads ? ['-m', `${config.threads}`] : []), // threads
     
                 '-c', `${this.camId}`,
                 '-D', `${this.dcap}`,

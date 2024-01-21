@@ -19,6 +19,7 @@ const defaults = {
         },
         model: 1,
         mirrored: true,
+        threads: 1,
         location: "127.0.0.1:11573"
     }
 }
