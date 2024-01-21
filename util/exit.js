@@ -1,17 +1,19 @@
 let exiting = false;
 
-module.exports = (instances, scripts) => {
+module.exports = (scripts, instances) => () => {
     if(exiting) return false;
 
     exiting = true;
 
     return new Promise(async res => {
-        console.log(`Murdering existing processes...`);
-
-        for(let script of scripts.instance) {
-            console.log(`| | Killing ${script.name}...`);
-            if(typeof instances[script.name].stop == `function`) await instances[script.name].stop();
-        };
+        if(scripts && instances) {
+            console.log(`Murdering existing processes...`);
+    
+            for(let script of scripts.instance) {
+                console.log(`| | Killing ${script.name}...`);
+                if(typeof instances[script.name]?.stop == `function`) await instances[script.name].stop();
+            };
+        }
 
         console.log(`Running post scripts...`);
 

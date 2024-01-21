@@ -24,7 +24,7 @@ module.exports = class FaceTracker extends EventEmitter {
         console.log(`\n\n-------------\n${cameras.length} camera(s) found\n| ${cameras.map(x => x[1]).join(`\n| `)}\n\nLooking for: ${config.device.name} (resolved: ${foundCamera[0]} - ${foundCamera[1]})\n-------------\n`);
         this.camId = foundCamera[0];
 
-        const cameraDCaps = child_process.spawnSync('facetracker.exe', ['-c', `${this.camId}`, `-a`, `1`], { cwd: this.cwd }).stdout.toString().split(`\n`).map(s => s.trim()).filter(x => !isNaN(x[0])).map(x => [
+        const cameraDCaps = child_process.spawnSync('facetracker.exe', [`-a`, `${this.camId}`], { cwd: this.cwd }).stdout.toString().split(`\n`).map(s => s.trim()).filter(x => !isNaN(x[0])).map(x => [
             x.split(`: `)[0], 
             x.split(`: `).slice(1).join(`: `).match(dcapRegex).map(s => [s.split(`:`)[0], s.split(`:`).slice(1).join(`:`)].map(s => s.trim())).reduce((a, b) => ({ ...a, [b[0]]: b[1] }), {})
         ]);
