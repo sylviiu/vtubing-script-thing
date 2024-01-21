@@ -12,7 +12,7 @@ process.on('SIGINT', exit);
 process.on('SIGTERM', exit);
 process.on('SIGHUP', exit);
 process.on('close', exit);
-process.on('exit', exit);
+process.on('beforeExit', exit);
 
 console.log(scripts);
 
